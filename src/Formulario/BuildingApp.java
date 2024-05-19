@@ -1,8 +1,8 @@
 package Formulario;
-public class BuildingFormulario {
+public class BuildingApp {
     public static void main(String[] args) 
     {
-        BuildFormulario Formulario = new BuildFormulario();
+        BuildTable Formulario = new BuildTable();
         Formulario.setVisible(true);
     }
     
