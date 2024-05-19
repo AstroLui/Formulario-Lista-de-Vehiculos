@@ -1,5 +1,6 @@
 package Formulario;
-import Objetos.Table;
+import Objetos.Components.Table;
+import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JFrame;
 
@@ -17,7 +18,8 @@ public class BuildTable extends JFrame
        c.setLayout(null);
        
        String [] columns = new String [] {"Nombre", "Apellido", "Cedula", "Modelo", "Marca", "Placa", "Color"};
-       Table table = new Table(25, 15, 655, 350, columns);
+       Class [] columnsClass = new Class [] {String.class, String.class, String.class, String.class, String.class, String.class, Color.class};
+       Table table = new Table(25, 15, 655, 350, columns, columnsClass);
        c.add(table.getTable());
     }
 }
