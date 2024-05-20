@@ -2,7 +2,7 @@ package Formulario;
 public class BuildingApp {
     public static void main(String[] args) 
     {
-        BuildTable Formulario = new BuildTable();
+        BuildViewMain Formulario = new BuildViewMain();
         Formulario.setVisible(true);
     }
     

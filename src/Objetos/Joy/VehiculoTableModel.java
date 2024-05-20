@@ -14,18 +14,22 @@ public class VehiculoTableModel extends AbstractTableModel
     {
         this.columnNames = columnNames;
         this.columnClass = columnClass;
-    };
+    }
     public VehiculoTableModel(List <Car> carList)
     {
         this.carList = carList;
-    };
+    }
     public VehiculoTableModel(String [] columnNames, Class[] columnClass, List <Car> carList)
     {
         this.carList = carList;
         this.columnNames = columnNames;
         this.columnClass = columnClass;
-    };
+    }
     
+    public void Add(Car item)
+    {
+        carList.add(item);
+    }
     @Override
     public String getColumnName(int column)
     {
