@@ -6,6 +6,7 @@ import Objetos.Joy.CustomFont;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
@@ -13,6 +14,7 @@ public class BuildViewMain extends JFrame
     private Container c;
     private final Label title; 
     private Button btnAgregar;
+    private Table table;
     public BuildViewMain()
     {
        super("Lista de Vehiculos");
@@ -26,19 +28,19 @@ public class BuildViewMain extends JFrame
        CustomFont fontSans = new CustomFont("Archivo-VariableFont_wdth,wght.ttf");
        
        title = new Label("Lista de Vehiculos", 15, 5, 250, 50);
-       title.getLabel().setFont(fontSans.myFont(1, 25f));
-       c.add(title.getLabel());
+       title.get().setFont(fontSans.myFont(1, 25f));
+       c.add(title.get());
        
        String [] columns = new String [] {"Dueño", "Modelo", "Marca", "Placa", "Color"};
        Class [] columnsClass = new Class [] {String.class, String.class, String.class, String.class, Color.class};
-       Table table = new Table(25, 60, 655, 350, columns, columnsClass);
-       c.add(table.getTable());
+       table = new Table(25, 60, 655, 350, columns, columnsClass);
+       c.add(table.get());
        
        btnAgregar = new Button("Agregar Registror", 25, 420, 170,30);
-       btnAgregar.getBtn().addActionListener((ActionEvent e) -> {
-           BuildFormulario Form = new BuildFormulario();
-           Form.setVisible(true);
+       btnAgregar.get().addActionListener((ActionEvent e) -> {
+           BuildFormulario form = new BuildFormulario();
+           form.setVisible(true);
        });
-       c.add(btnAgregar.getBtn());
+       c.add(btnAgregar);
     }
 }

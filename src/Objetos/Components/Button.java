@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.JButton;
 
-public class Button extends JButton{
+public class Button extends JButton {
     
     private final CustomFont fontSans = new CustomFont("Archivo-VariableFont_wdth,wght.ttf");
     private final Color btnColor = new Color(224,224,224);
@@ -19,9 +19,8 @@ public class Button extends JButton{
         this.setBounds(x, y, width, height);
     }
     
-    public JButton getBtn()
+    public JButton get()
     {
         return this;
     }
-    
 }
