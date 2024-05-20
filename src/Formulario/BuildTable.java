@@ -1,10 +1,10 @@
 package Formulario;
+import Objetos.Components.Button;
 import Objetos.Components.Table;
 import Objetos.Joy.CustomFont;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -12,7 +12,7 @@ public class BuildTable extends JFrame
 {
     private Container c;
     private final JLabel title; 
-    private JButton btnAgregar;
+    private Button btnAgregar;
     public BuildTable()
     {
        super("Lista de Vehiculos");
@@ -34,13 +34,11 @@ public class BuildTable extends JFrame
        Table table = new Table(25, 60, 655, 350, columns, columnsClass);
        c.add(table.getTable());
        
-       btnAgregar = new JButton("Agregar Registro");
-       btnAgregar.setFont(fontSans.myFont(0, 15f));
-       btnAgregar.setBounds(25, 420, 180, 25);
-       btnAgregar.addActionListener((ActionEvent e) -> {
+       btnAgregar = new Button("Agregar Registror", 25, 420, 170,30);
+       btnAgregar.getBtn().addActionListener((ActionEvent e) -> {
            BuildFormulario Form = new BuildFormulario();
            Form.setVisible(true);
        });
-       c.add(btnAgregar);
+       c.add(btnAgregar.getBtn());
     }
 }
