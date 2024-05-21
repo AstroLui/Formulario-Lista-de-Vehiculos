@@ -6,14 +6,13 @@ import Objetos.Joy.CustomFont;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
 {
     private Container c;
     private final Label title; 
-    private Button btnAgregar;
+    private Button btnAgregar, btnSale;
     private Table table;
     public BuildViewMain()
     {
@@ -42,5 +41,12 @@ public class BuildViewMain extends JFrame
            form.setVisible(true);
        });
        c.add(btnAgregar);
+       
+       btnSale = new Button("Alquier y Venta", 210, 420, 180, 30);
+       btnSale.get().addActionListener((ActionEvent e) -> {
+           BuildViewSale viewSale = new BuildViewSale();
+           viewSale.setVisible(true);
+       });
+       c.add(btnSale);
     }
 }
