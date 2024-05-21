@@ -55,7 +55,14 @@ public class VehiculoTableModel extends AbstractTableModel
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) 
     {
-        return null;
+        Car row = carList.get(rowIndex);
+        return ((
+           0 == columnIndex ? row.getOwn().getName() + " " + row.getOwn().getLastName() :
+           1 == columnIndex ? row.getModel() :
+           2 == columnIndex ? row.getBrand() :
+           3 == columnIndex ? row.getLicensePlate() : 
+           4 == columnIndex ? row.getColorCar() : null
+        ));
     }
     
 }

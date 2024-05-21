@@ -3,9 +3,12 @@ import Objetos.Components.Button;
 import Objetos.Components.Label;
 import Objetos.Components.Table;
 import Objetos.Joy.CustomFont;
+import Objetos.Keys.Car;
+import Objetos.Keys.People;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
@@ -34,6 +37,12 @@ public class BuildViewMain extends JFrame
        Class [] columnsClass = new Class [] {String.class, String.class, String.class, String.class, Color.class};
        table = new Table(25, 60, 655, 350, columns, columnsClass);
        c.add(table.get());
+       
+       People persona = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
+       Car car = new Car("Toyota", "Supra", "123SAD", new Date(14, 2, 2004), Color.GRAY);
+       car.asignOwn(persona);
+       table.getModel().Add(car);
+       
        
        btnAgregar = new Button("Agregar Registror", 25, 420, 170,30);
        btnAgregar.get().addActionListener((ActionEvent e) -> {
