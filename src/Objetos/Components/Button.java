@@ -19,6 +19,15 @@ public class Button extends JButton {
         this.setBounds(x, y, width, height);
     }
     
+    public Button(String btnName)
+    {
+        this.setText(btnName);
+        this.setBackground(btnColor);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        this.setFocusable(false);
+        this.setFont(fontSans.myFont(1, 12f));
+    }
+    
     public JButton get()
     {
         return this;

@@ -30,6 +30,12 @@ public class VehiculoTableModel extends AbstractTableModel
     {
         carList.add(item);
     }
+    
+    public List getList()
+    {
+        return this.carList;
+    }
+
     @Override
     public String getColumnName(int column)
     {
@@ -61,7 +67,7 @@ public class VehiculoTableModel extends AbstractTableModel
            1 == columnIndex ? row.getModel() :
            2 == columnIndex ? row.getBrand() :
            3 == columnIndex ? row.getLicensePlate() : 
-           4 == columnIndex ? row.getColorCar() : null
+           4 == columnIndex ? row.getColorCar() :  null
         ));
     }
     

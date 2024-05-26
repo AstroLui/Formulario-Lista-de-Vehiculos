@@ -9,9 +9,11 @@ public class Car
     private People own;
     private final Date yearCar;
     private final Color color;
+    private final int item;
     
-    public Car(String brand, String model, String licensePlate, Date yearCar, Color colorCar)
+    public Car(int id, String brand, String model, String licensePlate, Date yearCar, Color colorCar)
     {
+        this.item = id;
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
@@ -19,9 +21,16 @@ public class Car
         this.yearCar = yearCar;
     }
 
+
+    
     public void asignOwn(People Own)
     {
         this.own = Own;
+    }
+
+    public int getId()
+    {
+        return this.item;
     }
     
     public People getOwn()

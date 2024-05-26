@@ -12,5 +12,7 @@ public class BuildShowRegister extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         c = this.getContentPane();
+        
+        this.setVisible(true);
     }
 }

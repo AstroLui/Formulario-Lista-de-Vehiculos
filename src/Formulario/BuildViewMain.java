@@ -1,5 +1,6 @@
 package Formulario;
 import Objetos.Components.Button;
+import Objetos.Components.Combo;
 import Objetos.Components.Label;
 import Objetos.Components.Table;
 import Objetos.Joy.CustomFont;
@@ -9,6 +10,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
@@ -28,7 +30,7 @@ public class BuildViewMain extends JFrame
        
        c.setLayout(null);
        CustomFont fontSans = new CustomFont("Archivo-VariableFont_wdth,wght.ttf");
-       
+      
        title = new Label("Lista de Vehiculos", 15, 5, 250, 50);
        title.get().setFont(fontSans.myFont(1, 25f));
        c.add(title.get());
@@ -39,7 +41,7 @@ public class BuildViewMain extends JFrame
        c.add(table.get());
        
        People persona = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car = new Car("Toyota", "Supra", "123SAD", new Date(14, 2, 2004), Color.GRAY);
+       Car car = new Car(1, "Toyota", "Supra", "123SAD", new Date(14, 2, 2004), Color.GRAY);
        car.asignOwn(persona);
        table.getModel().Add(car);
        
