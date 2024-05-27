@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.function.Consumer;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -20,6 +19,8 @@ public class Table extends JTable implements JoyComponents, MouseListener
 {
     private VehiculoTableModel model;
     private JScrollPane scroll;
+    private int clicks = 0;
+
     
     public Table(int x, int y, int width, int height, String [] columns, Class[] columnsClass)
     {
@@ -27,6 +28,7 @@ public class Table extends JTable implements JoyComponents, MouseListener
         this.setModel(model);
         this.setDefaultRenderer(Color.class, new ColorRenderer());
         this.setFocusable(false);
+        this.setFont(fontSansThin.myFont(2, 14f));
         this.getTableHeader().setReorderingAllowed(false);
         this.getTableHeader().setFont(fontSans.myFont(2, 15f));
         this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -51,10 +53,10 @@ public class Table extends JTable implements JoyComponents, MouseListener
     @Override
     public void mouseClicked(MouseEvent e) 
     {
-        var test = (Car) this.model.getList().get(this.getSelectedRow());
-        System.out.print(test.getOwn().getName());
-        var action = (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)? new BuildShowRegister() : null;
-    }
+        this.clicks++;
+        var car = (Car) this.model.getList().get(this.getSelectedRow());
+        var action = (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && this.clicks <= 2)? new BuildShowRegister(car, this.clicks) : null;
+    }   
         
     @Override
     public void mousePressed(MouseEvent e){}

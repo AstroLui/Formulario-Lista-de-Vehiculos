@@ -10,7 +10,7 @@ public class Combo extends JComboBox implements JoyComponents
     public Combo(String comboName, List <String> options)
     {
        this.setOpaque(true);
-       this.setFont(fontSans.myFont(1, 12f));
+       this.setFont(fontSansThin.myFont(1, 12f));
        this.setBackground(bgColor);
        this.addItem(comboName);
        for (String option: options)
@@ -20,9 +20,10 @@ public class Combo extends JComboBox implements JoyComponents
     }
     public Combo(String comboName, List <String> options, int x, int y, int width, int height)
     {
-       this.setFont(fontSans.myFont(1, 12f));
+       this.setFont(fontSansThin.myFont(1, 12f));
        this.setBackground(bgColor);
        this.setBounds(x, y, width, height);
+       this.addItem(comboName);
        for (String option: options)
        {
            this.addItem(option);

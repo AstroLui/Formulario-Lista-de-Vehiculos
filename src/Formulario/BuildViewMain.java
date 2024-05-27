@@ -1,24 +1,21 @@
 package Formulario;
 import Objetos.Components.Button;
-import Objetos.Components.Combo;
 import Objetos.Components.Label;
 import Objetos.Components.Table;
-import Objetos.Joy.CustomFont;
 import Objetos.Keys.Car;
 import Objetos.Keys.People;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
 {
     private Container c;
     private final Label title; 
-    private Button btnAgregar, btnSale;
-    private Table table;
+    private final Button btnAgregar, btnSale;
+    private final Table table;
     public BuildViewMain()
     {
        super("Lista de Vehiculos");
@@ -29,10 +26,8 @@ public class BuildViewMain extends JFrame
        c = this.getContentPane();
        
        c.setLayout(null);
-       CustomFont fontSans = new CustomFont("Archivo-VariableFont_wdth,wght.ttf");
       
-       title = new Label("Lista de Vehiculos", 15, 5, 250, 50);
-       title.get().setFont(fontSans.myFont(1, 25f));
+       title = new Label("Lista de Vehiculos", 15, 5, 250, 50, 1, 25f);
        c.add(title.get());
        
        String [] columns = new String [] {"Dueño", "Modelo", "Marca", "Placa", "Color"};

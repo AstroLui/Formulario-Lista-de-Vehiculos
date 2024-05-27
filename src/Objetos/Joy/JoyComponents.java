@@ -5,6 +5,7 @@ import javax.swing.JComponent;
 
 public interface JoyComponents {
     final CustomFont fontSans = new CustomFont("Archivo-VariableFont_wdth,wght.ttf");
+    final CustomFont fontSansThin = new CustomFont("Archivo-Thin.ttf");
     final Color bgColor = new Color(224,224,224);
     public abstract JComponent get();
 }

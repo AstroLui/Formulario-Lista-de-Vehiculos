@@ -1,23 +1,24 @@
 package Formulario;
 
 import Objetos.Components.Button;
+import Objetos.Components.Combo;
 import Objetos.Components.Inputs;
 import Objetos.Components.Label;
-import Objetos.Components.Select;
 import Objetos.Joy.CustomFont;
 import java.awt.Container;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 
 public class BuildFormulario extends JFrame
 {
     Container c;
-    private Button btnGuardar;
-    private Label title, labelName, labelLastName, labelTlf, labelAddress, labelDni, labelIdCar, labelYear, labelColor, labelBrand, labelModel, labelImage;
-    private Inputs name,lastName,tlf,address,dni,idCar, year;
-    private Select brand, model;
-    ArrayList<String> options = new ArrayList<>();
+    private final Button btnGuardar;
+    private final Label title, labelName, labelLastName, labelTlf, labelAddress, labelDni, labelIdCar, labelYear, labelColor, labelBrand, labelModel, labelImage;
+    private final Inputs name,lastName,tlf,address,dni,idCar, year;
+    private final Combo brand;
+    private Combo model;
+    List<String> options = new ArrayList<>();
     public BuildFormulario()
     {
         super("Formulario");
@@ -28,11 +29,11 @@ public class BuildFormulario extends JFrame
         
         c.setLayout(null);
         CustomFont fontSans = new CustomFont("Archivo-VariableFont_wdth,wght.ttf");
-        options.add("Toyota");
-        options.add("Ford");
-        options.add("Mitsubishi");
-        options.add("Honda");
-        options.add("BMW");
+        this.options.add("Toyota");
+        this.options.add("Ford");
+        this.options.add("Mitsubishi");
+        this.options.add("Honda");
+        this.options.add("BMW");
         
         title = new Label("Registro de Vehículos", 15, 5, 300, 50);
        title.get().setFont(fontSans.myFont(1, 25f));
@@ -91,7 +92,7 @@ public class BuildFormulario extends JFrame
         labelBrand.get().setFont(fontSans.myFont(1, 20f));
         c.add(labelBrand.get());
         
-        brand = new Select(options, 125, 380, 125, 20);
+        brand = new Combo("Seleccionar Modelo",this.options, 125, 380, 150, 20);
         c.add(brand);
         
         labelModel = new Label("Modelo", 15, 425, 125, 20);
