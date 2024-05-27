@@ -44,6 +44,7 @@ public class BuildViewMain extends JFrame
        btnAgregar = new Button("Agregar Registror", 25, 420, 170,30);
        btnAgregar.get().addActionListener((ActionEvent e) -> {
            BuildFormulario form = new BuildFormulario();
+           form.addItemsDefault();
            form.setVisible(true);
        });
        c.add(btnAgregar);

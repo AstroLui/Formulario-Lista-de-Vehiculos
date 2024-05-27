@@ -2,8 +2,12 @@ package Formulario;
 
 import Objetos.Components.Button;
 import Objetos.Components.Label;
+import Objetos.Components.Table;
 import Objetos.Keys.Car;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 public class BuildShowRegister extends JFrame{
@@ -12,15 +16,24 @@ public class BuildShowRegister extends JFrame{
     private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar;
     private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar;
     private final Button btnEliminar, btnEditar;
-    public BuildShowRegister(Car car, int Click)
+    private Table parentTable;
+    public BuildShowRegister(Car car, Table table)
     {
         super("Mostrando Registro");
         this.setSize(400, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         c = this.getContentPane();
         
         this.setVisible(true);
+        this.parentTable = table;
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e)
+            {
+                parentTable.setClick(0);
+            }
+        });
         c.setLayout(null);
         
         lblTitle = new Label("Mostrando Registro", 15, 5, 300, 50, 1, 25f);
@@ -79,9 +92,24 @@ public class BuildShowRegister extends JFrame{
         c.add(relcolorCar);
         
         btnEditar = new Button("Editar", 75, 400, 100, 30);
+        btnEditar.addActionListener((ActionEvent e) ->{
+            BuildFormulario form = new BuildFormulario();
+            form.addItem(car.getOwn().getName(), car.getOwn().getLastName(), car.getOwn().getDni(), car.getOwn().getTlf(), 
+                    car.getOwn().getAddress(), car.getLicensePlate(), car.getYearCar().toString(), car.getBrand());
+            form.setVisible(true);
+            this.parentTable.setClick(0);
+            this.dispose();
+        });
         c.add(btnEditar);
         
         btnEliminar = new Button("Eliminar", 195, 400, 110, 30);
+        btnEliminar.addActionListener((ActionEvent e) ->{
+            this.parentTable.getModel().Delete(car.getId()-1);
+            this.parentTable.setClick(0);
+            this.parentTable.repaint();
+            this.parentTable.get().repaint();
+            this.dispose();
+        });
         c.add(btnEliminar);
     }
 }

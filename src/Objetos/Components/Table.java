@@ -17,8 +17,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 public class Table extends JTable implements JoyComponents, MouseListener
 {
-    private VehiculoTableModel model;
-    private JScrollPane scroll;
+    private final VehiculoTableModel model;
+    private final JScrollPane scroll;
     private int clicks = 0;
 
     
@@ -39,7 +39,10 @@ public class Table extends JTable implements JoyComponents, MouseListener
         this.scroll = new JScrollPane(this);
         this.scroll.setBounds(x, y, width, height);
     }
-    
+    public void setClick(int click)
+    {
+        this.clicks = click;
+    }
     @Override
     public VehiculoTableModel getModel()
     {
@@ -55,7 +58,7 @@ public class Table extends JTable implements JoyComponents, MouseListener
     {
         this.clicks++;
         var car = (Car) this.model.getList().get(this.getSelectedRow());
-        var action = (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && this.clicks <= 2)? new BuildShowRegister(car, this.clicks) : null;
+        var action = (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && this.clicks <= 2)? new BuildShowRegister(car, this) : null;
     }   
         
     @Override
