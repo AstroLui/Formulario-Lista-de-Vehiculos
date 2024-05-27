@@ -1,17 +1,17 @@
 package Objetos.Keys;
 
 import java.awt.Color;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Car 
 {
     private final String brand, model, licensePlate;
     private People own;
-    private final Date yearCar;
+    private final LocalDate yearCar;
     private final Color color;
     private final int item;
     
-    public Car(int id, String brand, String model, String licensePlate, Date yearCar, Color colorCar)
+    public Car(int id, String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar)
     {
         this.item = id;
         this.brand = brand;
@@ -53,7 +53,7 @@ public class Car
     {
         return this.color;
     }
-    public Date getYearCar()
+    public LocalDate getYearCar()
     {
         return this.yearCar;
     }

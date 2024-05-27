@@ -7,7 +7,10 @@ import Objetos.Keys.People;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.util.Date;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Calendar;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
@@ -16,7 +19,7 @@ public class BuildViewMain extends JFrame
     private final Label title; 
     private final Button btnAgregar, btnSale;
     private final Table table;
-    public BuildViewMain()
+    public BuildViewMain() throws ParseException
     {
        super("Lista de Vehiculos");
        this.setSize(720, 500);
@@ -35,8 +38,9 @@ public class BuildViewMain extends JFrame
        table = new Table(25, 60, 655, 350, columns, columnsClass);
        c.add(table.get());
        
+       LocalDate fecha = LocalDate.of(2004, 4, 4);
        People persona = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car = new Car(1, "Toyota", "Supra", "123SAD", new Date(14, 2, 2004), Color.GRAY);
+       Car car = new Car(1, "Toyota", "Supra", "123SAD", fecha, Color.GRAY);
        car.asignOwn(persona);
        table.getModel().Add(car);
        

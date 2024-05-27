@@ -8,6 +8,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 
 public class BuildShowRegister extends JFrame{
@@ -81,7 +82,7 @@ public class BuildShowRegister extends JFrame{
         
         yearCar = new Label("Año del Vehiculo", 150, 265, 180, 20, 2, 18f);
         c.add(yearCar);
-        relyearCar = new Label(car.getYearCar()+ "", 155, 285, 180, 20, 0, 16f);
+        relyearCar = new Label(car.getYearCar().format(DateTimeFormatter.ofPattern("dd / MM / yyyy")), 155, 285, 180, 20, 0, 16f, "Thin");
         c.add(relyearCar);
         
         colorCar = new Label("Color del Vehiculo", 20, 325, 180, 20, 2, 18f);
