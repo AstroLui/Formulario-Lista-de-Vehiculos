@@ -48,7 +48,7 @@ public class BuildViewMain extends JFrame
        table.getModel().Add(car1);
        
        People persona2 = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car2 = new Car( "Ford", "Ranger Raptor", "123SAD", fecha, Color.RED, "En Alquier", 30, 250.0);
+       Car car2 = new Car( "Ford", "Ranger Raptor", "123SAD", fecha, Color.RED, "En Alquiler", 30, 250.0);
        car2.asignOwn(persona2);
        table.getModel().Add(car2);
        

@@ -11,8 +11,8 @@ public class Car
     private People own;
     private final LocalDate yearCar;
     private final Color color;
-    private int item;
-    private double precioTotal, descuento=0.0, IVA, precioCar;
+    private int item, dayAl;
+    private double precioTotal, descuento=0.0, IVA, precioCar, precioDay;
     private String estado;
     
     public Car(int id, String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar)
@@ -34,6 +34,8 @@ public class Car
         this.yearCar = yearCar;
         this.estado = estado;
         CalPrecio();
+        this.dayAl = day;
+        this.precioDay = precioDay;
         this.precioTotal = day * precioDay;
     }
     
@@ -111,6 +113,14 @@ public class Car
     public double getPrecio()
     {
         return this.precioCar;
+    }
+    public double getPrecioDay()
+    {
+        return this.precioDay;
+    }
+    public int getDayAl()
+    {
+        return this.dayAl;
     }
     public double getPrecioTotal()
     {

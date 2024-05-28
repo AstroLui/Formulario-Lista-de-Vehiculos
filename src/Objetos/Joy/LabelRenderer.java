@@ -11,6 +11,8 @@ public class LabelRenderer extends Label implements TableCellRenderer
     public LabelRenderer()
     {
         super();
+        super.setFont(fontSans.myFont(0, 14f));
+        super.setBackground(Color.WHITE);
         this.setOpaque(true);
     }
     @Override

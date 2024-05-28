@@ -15,8 +15,8 @@ import javax.swing.JFrame;
 public class BuildShowRegister extends JFrame{
     private Container c;
     private final Label lblTitle;
-    private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar, precio, estado;
-    private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar, relPrecio, relEstado;
+    private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar, precio, estado, precioAl, dayAl;
+    private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar, relPrecio, relEstado, relPrecioAl, relDayAl;
     private final Button btnEliminar, btnEditar;
     private Table parentTable;
     private DecimalFormat df = new DecimalFormat("#.## $");
@@ -32,12 +32,7 @@ public class BuildShowRegister extends JFrame{
         
         this.setVisible(true);
         this.parentTable = table;
-        this.addWindowListener(new WindowAdapter(){
-            public void windowClosing(WindowEvent e)
-            {
-                parentTable.setClick(0);
-            }
-        });
+
         c.setLayout(null);
         
         lblTitle = new Label("Mostrando Registro", 15, 5, 300, 50, 1, 25f);
@@ -105,13 +100,22 @@ public class BuildShowRegister extends JFrame{
         relEstado = new Label(car.getEstado(), 195, 410, 120, 20, 0, 16f, "Thin");
         c.add(relEstado);
         
+        precioAl = new Label("Precio del Alquiler", 20, 440, 180, 20, 2, 16.5f);
+        precioAl.setVisible(false);c.add(precioAl); 
+        relPrecioAl = new Label(df.format(car.getPrecioDay()), 25, 465, 120, 20, 0, 16f, "Thin");
+        relPrecioAl.setVisible(false);c.add(relPrecioAl);
+        
+        dayAl = new Label("Dias de alquiler", 190, 440, 180, 20, 2, 16.5f);
+        dayAl.setVisible(false);c.add(dayAl);
+        relDayAl =new Label(car.getDayAl() + "", 195, 465, 180, 20, 0, 16f, "Thin");
+        relDayAl.setVisible(false);c.add(relDayAl);
+        
         btnEditar = new Button("Editar", 75, 500, 100, 30);
         btnEditar.addActionListener((ActionEvent e) ->{
             BuildFormulario form = new BuildFormulario();
-            form.addItem(car.getOwn().getName(), car.getOwn().getLastName(), car.getOwn().getDni(), car.getOwn().getTlf(), 
-                    car.getOwn().getAddress(), car.getLicensePlate(), car.getYearCar().getYear() + "", car.getBrand(), car.getModel(), car.getEstado() ,car.getColorCar(), parentTable);
+            form.addItem(car, parentTable);
             form.setVisible(true);
-            this.parentTable.setClick(0);
+            
             this.dispose();
         });
         c.add(btnEditar);
@@ -125,5 +129,21 @@ public class BuildShowRegister extends JFrame{
             this.dispose();
         });
         c.add(btnEliminar);
+        
+        this.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e)
+            {
+                parentTable.setClick(0);
+            }
+            
+            public void windowOpened(WindowEvent e)
+            {
+                var bool = ("En Alquiler".equals(car.getEstado())?true:false);
+                precioAl.setVisible(bool);
+                relPrecioAl.setVisible(bool);
+                dayAl.setVisible(bool);
+                relDayAl.setVisible(bool);
+            }
+        });
     }
 }
