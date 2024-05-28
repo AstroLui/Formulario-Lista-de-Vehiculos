@@ -10,8 +10,10 @@ import Objetos.Keys.People;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
@@ -40,7 +42,7 @@ public class BuildFormulario extends JFrame
         this.options.add("Toyota");
         this.options.add("Ford");
         this.options.add("Mitsubishi");
-        this.options.add("Honda");
+        this.options.add("Mazda");
         this.options.add("BMW");
     }
     
@@ -52,50 +54,45 @@ public class BuildFormulario extends JFrame
         
         labelName = new Label("Nombre", 20, 85, 120, 20, 2, 18f);
         c.add(labelName.get());
-        
-<<<<<<< Updated upstream
-        name = new Inputs("Alfonso", 125, 65, 150, 20);
-        c.add(name); c.add(name.getS());
-=======
+
         name = new Inputs("Alfonso", 20, 110, 130, 20);
-        c.add(name);
->>>>>>> Stashed changes
+        c.add(name); c.add(name.getS());
         
         labelLastName = new Label("Apellido",180, 85, 120, 20, 2, 18f);
         c.add(labelLastName.get());
         
         lastName = new Inputs("Henrique", 180, 110, 130, 20);
-        c.add(lastName);
+        c.add(lastName); c.add(lastName.getS());
         
         labelDni = new Label("Cédula", 20, 145, 120, 20, 2, 18f);
         c.add(labelDni.get());
         
         dni = new Inputs("29750712", 20, 165, 130, 20);
-        c.add(dni);
+        c.add(dni); c.add(dni.getS());
         
         labelTlf = new Label("Teléfono", 180, 145, 125, 20, 2, 18f);
         c.add(labelTlf.get());
         
         tlf = new Inputs("0424-4632499", 180, 165, 130, 20);
-        c.add(tlf);
+        c.add(tlf); c.add(tlf.getS());
         
         labelAddress = new Label("Dirección", 20, 205, 125, 20, 2, 18f);
         c.add(labelAddress.get());
         
         address = new Inputs("Valencia, Prebo", 20, 225, 130, 20);
-        c.add(address);
+        c.add(address); c.add(address.getS());
         
         labelIdCar = new Label("Matricula", 180, 265, 125, 20, 2, 18f);
         c.add(labelIdCar.get());
         
         idCar = new Inputs("AB123CD", 180, 285, 130, 20);
-        c.add(idCar);
+        c.add(idCar); c.add(idCar.getS());
         
         labelYear = new Label("Año", 20, 325, 125, 20, 2, 18f);
         c.add(labelYear.get());
         
         year = new Inputs("2024", 20, 345, 130, 20);
-        c.add(year);
+        c.add(year); c.add(year.getS());
         
         labelBrand = new Label("Marca", 180, 205, 125, 20, 2, 18f);
         c.add(labelBrand.get());
@@ -103,11 +100,25 @@ public class BuildFormulario extends JFrame
         brand = new Combo("Seleccionar Marca",this.options, 180, 225, 130, 20);
         c.add(brand);
         
+        
         labelModel = new Label("Modelo", 20, 265, 125, 20, 2, 18f);
         c.add(labelModel.get());
         
-        model = new Combo("Seleccionar Modelo",this.options, 20, 285, 130, 20);
+        model = new Combo("Seleccionar Modelo",20, 285, 130, 20);
         c.add(model);
+        
+        brand.addActionListener((ActionEvent e) -> {
+            model.removeAllItems();
+            var marca = (String)brand.getSelectedItem();
+            
+            var options = (marca == "Toyota") ? Arrays.asList("Selecciona el modelo","Yaris", "Corolla", "Supra"): 
+                    (marca == "Ford") ? Arrays.asList("Selecciona el modelo","Explorer", "Bronco", "Ranger") : 
+                    (marca == "BMW") ? Arrays.asList("Selecciona el modelo","M3", "X2", "M5") :
+                    (marca == "Mitsubishi") ? Arrays.asList("Selecciona el modelo","Eclipse", "EVO Lancer", "Lancer") :
+                    (marca == "Mazda") ? Arrays.asList("Selecciona el modelo","RX8", "MX5", "RX Vision GT3") :Arrays.asList("Selecciona el modelo");
+            
+            model.addOptions(options);
+        });
         
         labelColor = new Label("Color", 180, 325, 125, 20, 2, 18f);
         c.add(labelColor.get());

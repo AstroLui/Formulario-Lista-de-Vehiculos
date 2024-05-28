@@ -52,7 +52,7 @@ public class BuildViewMain extends JFrame
        car2.asignOwn(persona2);
        table.getModel().Add(car2);
        
-       btnAgregar = new Button("Agregar Registror", 25, 420, 170,30);
+       btnAgregar = new Button("Agregar Registro", 25, 420, 170,30);
        btnAgregar.get().addActionListener((ActionEvent e) -> {
            BuildFormulario form = new BuildFormulario();
            form.addItemsDefault(this.table);
