@@ -1,10 +1,16 @@
 package Objetos.Components;
 
 import Objetos.Joy.JoyComponents;
+import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class Label extends JLabel implements JoyComponents{
+    public Label()
+    {
+        this.setFont(fontSansThin.myFont(0, 14f));
+        this.setBackground(Color.WHITE);
+    }
     public Label(String lblName, int x, int y, int width, int height)
     {
         this.setText(lblName);

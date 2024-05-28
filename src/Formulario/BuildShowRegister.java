@@ -8,16 +8,18 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 
 public class BuildShowRegister extends JFrame{
     private Container c;
     private final Label lblTitle;
-    private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar;
-    private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar;
+    private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar, precio, estado;
+    private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar, relPrecio, relEstado;
     private final Button btnEliminar, btnEditar;
     private Table parentTable;
+    private DecimalFormat df = new DecimalFormat("#.## $");
     public BuildShowRegister(Car car, Table table)
     {
         super("Mostrando Registro");
@@ -87,12 +89,22 @@ public class BuildShowRegister extends JFrame{
         
         colorCar = new Label("Color del Vehiculo", 20, 325, 180, 20, 2, 18f);
         c.add(colorCar);
-        relcolorCar = new Label(null, 30, 350, 120, 20);
+        relcolorCar = new Label(null, 30, 350, 120, 15);
         relcolorCar.get().setOpaque(true);
         relcolorCar.get().setBackground(car.getColorCar());
         c.add(relcolorCar);
         
-        btnEditar = new Button("Editar", 75, 400, 100, 30);
+        precio = new Label("Precio del Vehiculo", 20, 385, 200, 20, 2, 18f);
+        c.add(precio);
+        relPrecio = new Label(df.format(car.getPrecio()), 25, 410, 120, 20, 0, 16f, "Thin");
+        c.add(relPrecio);
+        
+        estado = new Label("Estado", 200, 385, 120, 20,2, 18f);
+        c.add(estado);
+        relEstado = new Label(car.getEstado(), 205, 410, 120, 20, 0, 16f, "Thin");
+        c.add(relEstado);
+        
+        btnEditar = new Button("Editar", 75, 500, 100, 30);
         btnEditar.addActionListener((ActionEvent e) ->{
             BuildFormulario form = new BuildFormulario();
             form.addItem(car.getOwn().getName(), car.getOwn().getLastName(), car.getOwn().getDni(), car.getOwn().getTlf(), 
@@ -103,7 +115,7 @@ public class BuildShowRegister extends JFrame{
         });
         c.add(btnEditar);
         
-        btnEliminar = new Button("Eliminar", 195, 400, 110, 30);
+        btnEliminar = new Button("Eliminar", 195, 500, 110, 30);
         btnEliminar.addActionListener((ActionEvent e) ->{
             this.parentTable.getModel().Delete(car.getId()-1);
             this.parentTable.setClick(0);

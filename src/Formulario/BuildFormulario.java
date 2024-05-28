@@ -10,7 +10,6 @@ import Objetos.Keys.People;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;

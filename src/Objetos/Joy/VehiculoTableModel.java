@@ -1,6 +1,7 @@
 package Objetos.Joy;
 
 import Objetos.Keys.Car;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -84,12 +85,15 @@ public class VehiculoTableModel extends AbstractTableModel
     public Object getValueAt(int rowIndex, int columnIndex) 
     {
         Car row = carList.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("#.##");
         return ((
            0 == columnIndex ? row.getOwn().getName() + " " + row.getOwn().getLastName() :
            1 == columnIndex ? row.getModel() :
            2 == columnIndex ? row.getBrand() :
            3 == columnIndex ? row.getLicensePlate() : 
-           4 == columnIndex ? row.getColorCar() :  null
+           4 == columnIndex ? row.getColorCar() :  
+           5 == columnIndex ? row.getEstado():
+           6 == columnIndex ? df.format(row.getPrecioTotal()) : null
         ));
     }
     
