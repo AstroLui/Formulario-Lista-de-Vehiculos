@@ -10,6 +10,8 @@ public class VehiculoTableModel extends AbstractTableModel
     private List <Car> carList = new ArrayList<>();
     private String[] columnNames;
     private Class[] columnClass;
+    private int forReasigned = 1;
+    
     public VehiculoTableModel(String [] columnNames, Class[] columnClass)
     {
         this.columnNames = columnNames;
@@ -18,6 +20,7 @@ public class VehiculoTableModel extends AbstractTableModel
     public VehiculoTableModel(List <Car> carList)
     {
         this.carList = carList;
+        Reasing();
     }
     public VehiculoTableModel(String [] columnNames, Class[] columnClass, List <Car> carList)
     {
@@ -26,15 +29,28 @@ public class VehiculoTableModel extends AbstractTableModel
         this.columnClass = columnClass;
     }
     
+    public void Reasing()
+    {
+        carList.forEach((item) ->
+        {
+            item.setId(forReasigned);
+            forReasigned++;
+        });
+        forReasigned = 1; 
+    }
+    
     public void Add(Car item)
     {
+        this.fireTableRowsInserted(0, 0);
         carList.add(item);
+        Reasing();
     }
     
     public void Delete(int index)
     {
-        this.fireTableRowsDeleted(index, index);
+        this.fireTableRowsDeleted(0, 0);
         carList.remove(index);
+        Reasing();
     }
     public List getList()
     {

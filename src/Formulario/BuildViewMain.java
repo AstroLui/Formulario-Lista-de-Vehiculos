@@ -9,8 +9,6 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.Month;
-import java.util.Calendar;
 import javax.swing.JFrame;
 
 public class BuildViewMain extends JFrame
@@ -40,15 +38,25 @@ public class BuildViewMain extends JFrame
        
        LocalDate fecha = LocalDate.of(2004, 4, 4);
        People persona = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car = new Car(1, "Toyota", "Supra", "123SAD", fecha, Color.GRAY);
+       Car car = new Car("Toyota", "Supra", "123SAD", fecha, Color.GRAY);
        car.asignOwn(persona);
        table.getModel().Add(car);
        
+       fecha = LocalDate.of(2005, 2, 4);
+       People persona1 = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
+       Car car1 = new Car("Toyota", "Supra", "123SAD", fecha, Color.BLUE);
+       car1.asignOwn(persona1);
+       table.getModel().Add(car1);
+       
+       People persona2 = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
+       Car car2 = new Car( "Nissan", "370z", "123SAD", fecha, Color.RED);
+       car2.asignOwn(persona2);
+       table.getModel().Add(car2);
        
        btnAgregar = new Button("Agregar Registror", 25, 420, 170,30);
        btnAgregar.get().addActionListener((ActionEvent e) -> {
            BuildFormulario form = new BuildFormulario();
-           form.addItemsDefault();
+           form.addItemsDefault(this.table);
            form.setVisible(true);
        });
        c.add(btnAgregar);

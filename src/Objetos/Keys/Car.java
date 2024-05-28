@@ -9,7 +9,7 @@ public class Car
     private People own;
     private final LocalDate yearCar;
     private final Color color;
-    private final int item;
+    private int item;
     
     public Car(int id, String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar)
     {
@@ -21,7 +21,14 @@ public class Car
         this.yearCar = yearCar;
     }
 
-
+    public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar)
+    {
+        this.brand = brand;
+        this.model = model;
+        this.licensePlate = licensePlate;
+        this.color = colorCar;
+        this.yearCar = yearCar;
+    }
     
     public void asignOwn(People Own)
     {
@@ -31,6 +38,11 @@ public class Car
     public int getId()
     {
         return this.item;
+    }
+    
+    public void setId(int id)
+    {
+        this.item = id;
     }
     
     public People getOwn()

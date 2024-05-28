@@ -4,7 +4,13 @@ import Objetos.Components.Button;
 import Objetos.Components.Combo;
 import Objetos.Components.Inputs;
 import Objetos.Components.Label;
+import Objetos.Components.Table;
+import Objetos.Keys.Car;
+import Objetos.Keys.People;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -18,12 +24,15 @@ public class BuildFormulario extends JFrame
     private Combo brand;
     private Combo model;
     List<String> options = new ArrayList<>();
+    
+    private Table parentTable;
     public BuildFormulario()
     {
         super("Formulario");
         this.setSize(400, 680);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         c = this.getContentPane();
         
         c.setLayout(null);
@@ -34,8 +43,9 @@ public class BuildFormulario extends JFrame
         this.options.add("BMW");
     }
     
-    public void addItemsDefault()
+    public void addItemsDefault(Table table)
     {
+        this.parentTable = table;
         title = new Label("Registro de Vehículos", 15, 5, 300, 50, 1, 25f);
         c.add(title.get());
         
@@ -97,6 +107,15 @@ public class BuildFormulario extends JFrame
         c.add(labelImage.get());
         
         btnGuardar = new Button("Guardar",100,580,180,30);
+        btnGuardar.addActionListener((ActionEvent e) ->
+        {
+            /* para Testear, aunque asi sera como se crearan los betas con el formulario */
+            People p = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua - La Victoria");
+            Car c = new Car(4, "Nissan", "370z", "123SAD", LocalDate.of(2020, 05, 12), Color.YELLOW);
+            c.asignOwn(p);
+            parentTable.getModel().Add(c);
+            this.dispose();
+        });
         c.add(btnGuardar);  
     }
     
