@@ -20,6 +20,7 @@ public class BuildShowRegister extends JFrame{
     private final Button btnEliminar, btnEditar;
     private Table parentTable;
     private DecimalFormat df = new DecimalFormat("#.## $");
+    private DecimalFormat df1 = new DecimalFormat("#.##");
     public BuildShowRegister(Car car, Table table)
     {
         super("Mostrando Registro");
@@ -75,7 +76,7 @@ public class BuildShowRegister extends JFrame{
         model = new Label("Modelo", 240, 205, 120, 20, 2, 18f);
         c.add(model);
         relmodel = new Label(car.getModel(), 245, 225, 120, 20, 0, 16f, "Thin");
-        c.add(relmodel);
+        c.add(relmodel); 
         
         licensPlate = new Label("Matricula", 20, 265, 120, 20, 2, 18f);
         c.add(licensPlate);
@@ -84,7 +85,7 @@ public class BuildShowRegister extends JFrame{
         
         yearCar = new Label("Año del Vehiculo", 150, 265, 180, 20, 2, 18f);
         c.add(yearCar);
-        relyearCar = new Label(car.getYearCar().format(DateTimeFormatter.ofPattern("dd / MM / yyyy")), 155, 285, 180, 20, 0, 16f, "Thin");
+        relyearCar = new Label(car.getYearCar().format(DateTimeFormatter.ofPattern("yyyy")), 155, 285, 180, 20, 0, 16f, "Thin");
         c.add(relyearCar);
         
         colorCar = new Label("Color del Vehiculo", 20, 325, 180, 20, 2, 18f);
@@ -94,21 +95,21 @@ public class BuildShowRegister extends JFrame{
         relcolorCar.get().setBackground(car.getColorCar());
         c.add(relcolorCar);
         
-        precio = new Label("Precio del Vehiculo", 20, 385, 200, 20, 2, 18f);
+        precio = new Label("Precio del Vehiculo", 20, 385, 200, 20, 2, 16.5f);
         c.add(precio);
         relPrecio = new Label(df.format(car.getPrecio()), 25, 410, 120, 20, 0, 16f, "Thin");
         c.add(relPrecio);
         
-        estado = new Label("Estado", 200, 385, 120, 20,2, 18f);
+        estado = new Label("Estado", 190, 385, 120, 20,2, 18f);
         c.add(estado);
-        relEstado = new Label(car.getEstado(), 205, 410, 120, 20, 0, 16f, "Thin");
+        relEstado = new Label(car.getEstado(), 195, 410, 120, 20, 0, 16f, "Thin");
         c.add(relEstado);
         
         btnEditar = new Button("Editar", 75, 500, 100, 30);
         btnEditar.addActionListener((ActionEvent e) ->{
             BuildFormulario form = new BuildFormulario();
             form.addItem(car.getOwn().getName(), car.getOwn().getLastName(), car.getOwn().getDni(), car.getOwn().getTlf(), 
-                    car.getOwn().getAddress(), car.getLicensePlate(), car.getYearCar().toString(), car.getBrand());
+                    car.getOwn().getAddress(), car.getLicensePlate(), car.getYearCar().getYear() + "", car.getBrand(), car.getModel(), car.getEstado() ,car.getColorCar(), parentTable);
             form.setVisible(true);
             this.parentTable.setClick(0);
             this.dispose();

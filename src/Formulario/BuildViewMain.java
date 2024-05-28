@@ -35,7 +35,7 @@ public class BuildViewMain extends JFrame
        table = new Table(25, 60, 735, 350, columns, columnsClass);
        c.add(table.get());
        
-       LocalDate fecha = LocalDate.of(2004, 4, 4);
+       LocalDate fecha = LocalDate.of(2005, 02, 02);
        People persona = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
        Car car = new Car("Toyota", "Supra", "123SAD", fecha, Color.GRAY, "En Venta");
        car.asignOwn(persona);

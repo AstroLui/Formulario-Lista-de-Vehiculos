@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class Label extends JLabel implements JoyComponents{
     public Label()
     {
-        this.setFont(fontSansThin.myFont(0, 14f));
+        this.setFont(fontSans.myFont(0, 14f));
         this.setBackground(Color.WHITE);
     }
     public Label(String lblName, int x, int y, int width, int height)
