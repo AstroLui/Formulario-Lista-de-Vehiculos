@@ -16,7 +16,6 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Arrays;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
@@ -282,10 +281,10 @@ public class BuildFormulario extends JFrame
         
         colorLabel = new Label(null, 250, 327, 15, 15);
         colorLabel.get().setOpaque(true); colorLabel.get().setBackground(Coche.getColorCar());
-        c.add(colorLabel);
+        c.add(colorLabel); colorSeleccionado = Coche.getColorCar();
         
         color.addActionListener((ActionEvent e) -> {
-            Color colorSeleccionado = JColorChooser.showDialog(this, "Escoge un color", Color.yellow);
+            colorSeleccionado = JColorChooser.showDialog(this, "Escoge un color", Color.yellow);
             colorLabel.get().setBackground(colorSeleccionado);
             colorLabel.repaint();
             c.repaint();
@@ -315,6 +314,21 @@ public class BuildFormulario extends JFrame
         dayAl.getS().setVisible(false);
         c.add(dayAl); c.add(dayAl.getS());
         
+        estado.addActionListener((ActionEvent e) ->
+        {
+            var bool = ("En Alquiler".equals(estado.getSelectedItem()))? true: false;
+            labelPrecioAl.setVisible(bool);
+            precioAl.setVisible(bool);
+            precioAl.getS().setVisible(bool);
+            labelDayAl.setVisible(bool);
+            dayAl.setVisible(bool);
+            dayAl.getS().setVisible(bool);
+            c.repaint();
+            
+            precioAl.addPlaceHolder("1992.29 ($)");
+            dayAl.addPlaceHolder("Numero de Dias"); 
+        });
+        
         this.addWindowListener(new WindowAdapter()
         {
            public void windowOpened(WindowEvent e)
@@ -338,10 +352,13 @@ public class BuildFormulario extends JFrame
         btnEditar.addActionListener((ActionEvent e) ->
         {
             /* para Testear, aunque asi sera como se crearan los betas con el formulario */
-            People p = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua - La Victoria");
-            Car c = new Car(4, "BMW", "M3", "123SAD", LocalDate.of(2020, 05, 12), Color.YELLOW);
+            People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
+            Car c = ("En Alquiler".equals(estado.getSelectedItem()))
+                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
+                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem());
             c.asignOwn(p);
-            parentTable.getModel().Add(c);
+            parentTable.getModel().Edit(Coche.getId()-1, c);
+            parentTable.repaint();
             this.parentTable.setClick(0);
             this.dispose();
         });

@@ -47,7 +47,11 @@ public class VehiculoTableModel extends AbstractTableModel
         carList.add(item);
         Reasing();
     }
-    
+    public void Edit(int index, Car item)
+    {
+        carList.set(index, item);
+        Reasing();
+    }
     public void Delete(int index)
     {
         this.fireTableRowsDeleted(0, 0);

@@ -1,6 +1,7 @@
 package Objetos.Components;
 
 import Objetos.Joy.JoyComponents;
+import java.awt.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -12,6 +13,7 @@ public class Combo extends JComboBox implements JoyComponents
     {
        this.setOpaque(true);
        this.setFont(fontSansThin.myFont(1, 12f));
+       this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        this.setBackground(bgColor);
        this.addItem(comboName);
        options.forEach((item) ->
@@ -23,6 +25,7 @@ public class Combo extends JComboBox implements JoyComponents
     {
        this.setFont(fontSansThin.myFont(1, 12f));
        this.setBackground(bgColor);
+       this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        this.setBounds(x, y, width, height);
        this.addItem(comboName);
        for (String option: options)
@@ -33,6 +36,7 @@ public class Combo extends JComboBox implements JoyComponents
      public Combo(int x, int y, int width, int height)
     {
        this.setFont(fontSansThin.myFont(1, 12f));
+       this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        this.setBackground(bgColor);
        this.setBounds(x, y, width, height);
     }
