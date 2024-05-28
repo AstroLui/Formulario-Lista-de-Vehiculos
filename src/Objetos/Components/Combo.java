@@ -13,10 +13,10 @@ public class Combo extends JComboBox implements JoyComponents
        this.setFont(fontSansThin.myFont(1, 12f));
        this.setBackground(bgColor);
        this.addItem(comboName);
-       for (String option: options)
+       options.forEach((item) ->
        {
-           this.addItem(option);
-       }
+           this.addItem(item);
+       });
     }
     public Combo(String comboName, List <String> options, int x, int y, int width, int height)
     {
