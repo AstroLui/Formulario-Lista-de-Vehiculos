@@ -53,7 +53,7 @@ public class BuildFormulario extends JFrame
         c.add(labelName.get());
         
         name = new Inputs("Alfonso", 125, 65, 150, 20);
-        c.add(name);
+        c.add(name); c.add(name.getS());
         
         labelLastName = new Label("Apellido",15,110,125,20, 1, 20f);
         c.add(labelLastName.get());

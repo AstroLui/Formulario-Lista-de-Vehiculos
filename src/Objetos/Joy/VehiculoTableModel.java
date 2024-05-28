@@ -27,6 +27,7 @@ public class VehiculoTableModel extends AbstractTableModel
         this.carList = carList;
         this.columnNames = columnNames;
         this.columnClass = columnClass;
+        Reasing();
     }
     
     public void Reasing()

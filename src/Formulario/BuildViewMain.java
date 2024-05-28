@@ -7,7 +7,6 @@ import Objetos.Keys.People;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
-import java.text.ParseException;
 import java.time.LocalDate;
 import javax.swing.JFrame;
 
@@ -17,7 +16,7 @@ public class BuildViewMain extends JFrame
     private final Label title; 
     private final Button btnAgregar, btnSale;
     private final Table table;
-    public BuildViewMain() throws ParseException
+    public BuildViewMain()
     {
        super("Lista de Vehiculos");
        this.setSize(720, 500);
