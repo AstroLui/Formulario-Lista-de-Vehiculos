@@ -1,9 +1,11 @@
 package Objetos.Keys;
 
 import java.awt.Color;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 public class Car 
 {
@@ -13,6 +15,7 @@ public class Car
     private final Color color;
     private int item, dayAl;
     private double precioTotal, descuento=0.0, IVA, precioCar, precioDay;
+    private URL imagCar;
     private String estado;
     
     public Car(int id, String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar)
@@ -25,13 +28,14 @@ public class Car
         this.yearCar = yearCar;
     }
 
-    public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar, String estado, int day, double precioDay)
+    public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar, URL icon,String estado, int day, double precioDay)
     {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
         this.color = colorCar;
         this.yearCar = yearCar;
+        this.imagCar = icon;
         this.estado = estado;
         CalPrecio();
         this.dayAl = day;
@@ -39,13 +43,14 @@ public class Car
         this.precioTotal = day * precioDay;
     }
     
-    public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar, String estado)
+    public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar, URL icon,String estado)
     {
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
         this.color = colorCar;
         this.yearCar = yearCar;
+        this.imagCar = icon;
         this.estado = estado;
         CalPrecio();
         this.precioTotal = this.precioCar  + this.IVA;
@@ -133,6 +138,10 @@ public class Car
     public String getEstado()
     {
         return this.estado;
+    }
+    public URL getIconImage()
+    {
+        return this.imagCar;
     }
 
 }

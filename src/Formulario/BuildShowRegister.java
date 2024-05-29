@@ -8,6 +8,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
@@ -15,16 +16,16 @@ import javax.swing.JFrame;
 public class BuildShowRegister extends JFrame{
     private Container c;
     private final Label lblTitle;
-    private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar, precio, estado, precioAl, dayAl;
-    private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar, relPrecio, relEstado, relPrecioAl, relDayAl;
+    private final Label name, lastName, dni, tlf, address, brand, model, licensPlate, yearCar, colorCar, precio, estado, precioAl, dayAl, imagen;
+    private final Label relname, rellastName, reldni, reltlf, reladdress, relbrand, relmodel, rellicensPlate, relyearCar, relcolorCar, relPrecio, relEstado, relPrecioAl, relDayAl, relImagen;
     private final Button btnEliminar, btnEditar;
     private Table parentTable;
     private DecimalFormat df = new DecimalFormat("#.## $");
     private DecimalFormat df1 = new DecimalFormat("#.##");
-    public BuildShowRegister(Car car, Table table)
+    public BuildShowRegister(Car car, Table table) throws IOException
     {
         super("Mostrando Registro");
-        this.setSize(400, 600);
+        this.setSize(400, 700);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -95,22 +96,28 @@ public class BuildShowRegister extends JFrame{
         relPrecio = new Label(df.format(car.getPrecio()), 25, 410, 120, 20, 0, 16f, "Thin");
         c.add(relPrecio);
         
-        estado = new Label("Estado", 190, 385, 120, 20,2, 18f);
+        estado = new Label("Estado", 200, 325, 120, 20,2, 18f);
         c.add(estado);
-        relEstado = new Label(car.getEstado(), 195, 410, 120, 20, 0, 16f, "Thin");
+        relEstado = new Label(car.getEstado(), 195, 350, 120, 20, 0, 16f, "Thin");
         c.add(relEstado);
         
-        precioAl = new Label("Precio del Alquiler", 20, 440, 180, 20, 2, 16.5f);
+        imagen = new Label("Imagen", 190, 385, 120, 20, 2, 18f);
+        c.add(imagen);
+        
+        relImagen = new Label(195, 410, 140, 80, car.getIconImage());
+        c.add(relImagen);
+        
+        precioAl = new Label("Precio del Alquiler", 20, 500, 180, 20, 2, 16.5f);
         precioAl.setVisible(false);c.add(precioAl); 
-        relPrecioAl = new Label(df.format(car.getPrecioDay()), 25, 465, 120, 20, 0, 16f, "Thin");
+        relPrecioAl = new Label(df.format((long) car.getPrecioDay()), 25, 525, 120, 20, 0, 16f, "Thin");
         relPrecioAl.setVisible(false);c.add(relPrecioAl);
         
-        dayAl = new Label("Dias de alquiler", 190, 440, 180, 20, 2, 16.5f);
+        dayAl = new Label("Dias de alquiler", 190, 500, 180, 20, 2, 16.5f);
         dayAl.setVisible(false);c.add(dayAl);
-        relDayAl =new Label(car.getDayAl() + "", 195, 465, 180, 20, 0, 16f, "Thin");
+        relDayAl =new Label(car.getDayAl() + "", 195, 525, 180, 20, 0, 16f, "Thin");
         relDayAl.setVisible(false);c.add(relDayAl);
         
-        btnEditar = new Button("Editar", 75, 500, 100, 30);
+        btnEditar = new Button("Editar", 75, 600, 100, 30);
         btnEditar.addActionListener((ActionEvent e) ->{
             BuildFormulario form = new BuildFormulario();
             form.addItem(car, parentTable);
@@ -120,7 +127,7 @@ public class BuildShowRegister extends JFrame{
         });
         c.add(btnEditar);
         
-        btnEliminar = new Button("Eliminar", 195, 500, 110, 30);
+        btnEliminar = new Button("Eliminar", 195, 600, 110, 30);
         btnEliminar.addActionListener((ActionEvent e) ->{
             this.parentTable.getModel().Delete(car.getId()-1);
             this.parentTable.setClick(0);

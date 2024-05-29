@@ -1,6 +1,7 @@
 package Formulario;
 
 import Objetos.Components.Button;
+import Objetos.Components.ChooseFile;
 import Objetos.Components.Combo;
 import Objetos.Components.Inputs;
 import Objetos.Components.Label;
@@ -13,8 +14,11 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -24,12 +28,14 @@ import javax.swing.JFrame;
 public class BuildFormulario extends JFrame
 {
     Container c;
-    private Button btnGuardar, btnEditar, color;
+    private Button btnGuardar, btnEditar, color, btnImagen;
     private Label title, labelName, labelLastName, labelTlf, labelAddress, labelDni, labelIdCar, labelYear, labelColor, labelBrand, labelModel, labelImage, colorLabel, labelPrecioAl, labelDayAl, labelEstado;
     private Inputs name,lastName,tlf,address,dni,idCar, year, precioAl, dayAl;
     private Combo brand, estado;
     private Combo model;
     private Color colorSeleccionado;
+    private ChooseFile chooseImag;
+    private Label imagen;
     
     private Table parentTable;
     private DecimalFormat df1 = new DecimalFormat("#.##");
@@ -177,18 +183,31 @@ public class BuildFormulario extends JFrame
         labelImage = new Label("Imagen", 190, 385, 120, 20, 2, 18f);
         c.add(labelImage);
         
-        btnGuardar = new Button("Guardar",80,580,180,30);
+        btnImagen = new Button("Escoge una imagen", 190, 410, 149, 20);
+        c.add(btnImagen);
         
+        btnImagen.addActionListener((ActionEvent e) ->
+        {
+            chooseImag = new ChooseFile();
+            var file = (File) chooseImag.ShowDiag();
+            try {
+                imagen = new Label( 190, 440, 140, 80, file.toURL());
+            } catch (MalformedURLException ex) {} catch (IOException ex) {}
+            c.add(imagen);
+            c.repaint();
+        });
+        
+        btnGuardar = new Button("Guardar",80,580,180,30);
         btnGuardar.addActionListener((ActionEvent e)-> 
         {
-            boolean bool = false;
+            boolean bool = (name.getText().equals(""))? false: true;
             FunctionInterface tf= 
                    (bool)
                     ?()->{
                             People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
                             Car c = ("En Alquiler".equals(estado.getSelectedItem()))
-                                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
-                                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem());
+                                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
+                                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado,imagen.getIconImage() ,(String)estado.getSelectedItem());
                             c.asignOwn(p);
                             parentTable.getModel().Add(c);
                             this.parentTable.setClick(0);
@@ -363,8 +382,8 @@ public class BuildFormulario extends JFrame
             /* para Testear, aunque asi sera como se crearan los betas con el formulario */
             People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
             Car c = ("En Alquiler".equals(estado.getSelectedItem()))
-                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
-                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem());
+                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
+                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem());
             c.asignOwn(p);
             parentTable.getModel().Edit(Coche.getId()-1, c);
             parentTable.repaint();

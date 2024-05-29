@@ -35,22 +35,7 @@ public class BuildViewMain extends JFrame
        table = new Table(25, 60, 735, 350, columns, columnsClass);
        c.add(table.get());
        
-       LocalDate fecha = LocalDate.of(2005, 02, 02);
-       People persona = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car = new Car("Toyota", "Supra", "123SAD", fecha, Color.GRAY, "En Venta");
-       car.asignOwn(persona);
-       table.getModel().Add(car);
-       
-       fecha = LocalDate.of(2005, 2, 4);
-       People persona1 = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car1 = new Car("Toyota", "Supra", "123SAD", fecha, Color.BLUE, "En Venta");
-       car1.asignOwn(persona1);
-       table.getModel().Add(car1);
-       
-       People persona2 = new People("Luis", "Amias", "30.292.216", "0412-8968401", "Aragua");
-       Car car2 = new Car( "Ford", "Ranger Raptor", "123SAD", fecha, Color.RED, "En Alquiler", 30, 250.0);
-       car2.asignOwn(persona2);
-       table.getModel().Add(car2);
+
        
        btnAgregar = new Button("Agregar Registro", 25, 420, 170,30);
        btnAgregar.get().addActionListener((ActionEvent e) -> {
