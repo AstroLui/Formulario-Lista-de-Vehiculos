@@ -5,6 +5,7 @@ import Objetos.Components.Combo;
 import Objetos.Components.Inputs;
 import Objetos.Components.Label;
 import Objetos.Components.Table;
+import Objetos.Joy.FunctionInterface;
 import Objetos.Keys.Car;
 import Objetos.Keys.People;
 import java.awt.Color;
@@ -177,19 +178,26 @@ public class BuildFormulario extends JFrame
         c.add(labelImage);
         
         btnGuardar = new Button("Guardar",80,580,180,30);
-        btnGuardar.addActionListener((ActionEvent e) ->
+        
+        btnGuardar.addActionListener((ActionEvent e)-> 
         {
-            /* para Testear, aunque asi sera como se crearan los betas con el formulario */
-            People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
-            Car c = ("En Alquiler".equals(estado.getSelectedItem()))
-                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
-                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem());
-            c.asignOwn(p);
-            parentTable.getModel().Add(c);
-            this.parentTable.setClick(0);
-            this.dispose();
+            boolean bool = false;
+            FunctionInterface tf= 
+                   (bool)
+                    ?()->{
+                            People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
+                            Car c = ("En Alquiler".equals(estado.getSelectedItem()))
+                                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
+                                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, (String)estado.getSelectedItem());
+                            c.asignOwn(p);
+                            parentTable.getModel().Add(c);
+                            this.parentTable.setClick(0);
+                            this.dispose();
+                        }
+                    :()->{};
+            tf.get();        
         });
-        c.add(btnGuardar);  
+        c.add(btnGuardar);
     }
     
     public void addItem(Car Coche, Table table)
@@ -351,6 +359,7 @@ public class BuildFormulario extends JFrame
         btnEditar = new Button("Editar",80,580,180,30);
         btnEditar.addActionListener((ActionEvent e) ->
         {
+            
             /* para Testear, aunque asi sera como se crearan los betas con el formulario */
             People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
             Car c = ("En Alquiler".equals(estado.getSelectedItem()))
