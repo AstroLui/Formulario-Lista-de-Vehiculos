@@ -5,7 +5,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
-import javax.swing.ImageIcon;
 
 public class Car 
 {
