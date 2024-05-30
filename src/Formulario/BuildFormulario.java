@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class BuildFormulario extends JFrame
 {
@@ -60,13 +61,13 @@ public class BuildFormulario extends JFrame
         labelName = new Label("Nombre", 20, 85, 120, 20, 2, 18f);
         c.add(labelName.get());
 
-        name = new Inputs("Alfonso", 20, 110, 130, 20);
+        name = new Inputs("Alfonso", 20, 110, 130, 20, "Alfa");
         c.add(name); c.add(name.getS());
         
         labelLastName = new Label("Apellido",190, 85, 120, 20, 2, 18f);
         c.add(labelLastName.get());
         
-        lastName = new Inputs("Henrique", 190, 110, 130, 20);
+        lastName = new Inputs("Henrique", 190, 110, 130, 20,"");
         c.add(lastName); c.add(lastName.getS());
         
         labelDni = new Label("Cédula", 20, 145, 120, 20, 2, 18f);
@@ -200,6 +201,7 @@ public class BuildFormulario extends JFrame
         btnGuardar = new Button("Guardar",80,580,180,30);
         btnGuardar.addActionListener((ActionEvent e)-> 
         {
+            boolean isValid = name.getText().isEmpty();
             boolean bool = (name.getText().equals(""))? false: true;
             FunctionInterface tf= 
                    (bool)
@@ -217,6 +219,8 @@ public class BuildFormulario extends JFrame
             tf.get();        
         });
         c.add(btnGuardar);
+        
+
     }
     
     public void addItem(Car Coche, Table table)

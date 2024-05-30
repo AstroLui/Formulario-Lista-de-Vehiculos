@@ -1,7 +1,12 @@
 package Objetos.Components;
+import Objetos.Joy.FunctionInterface;
 import Objetos.Joy.JoyComponents;
 import Objetos.Joy.TextPrompt;
 import java.awt.Color;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -30,6 +35,24 @@ public class Inputs extends JTextField implements JoyComponents {
         this.txtError.get().setFont(fontSansThin.myFont(1, 10f));
         this.txtError.setForeground(Color.RED);
     }
+    public Inputs(String placeholder, int x, int y, int width, int height, String options)
+    {
+        placeHolder = new TextPrompt(placeholder, this);
+        placeHolder.setFont(fontSansThin.myFont(3, 14f));
+        placeHolder.setForeground(Color.gray);
+        this.setFont(fontSans.myFont(1, 14f));
+        this.setBackground(bg);
+        this.setBorder(null);
+        this.setBounds(x, y, width, height);
+        this.separador.setBounds(x-5, y+20, width+5, 2);
+        this.separador.setForeground(Color.gray);
+        this.txtError = new Label("Text", x-5, y+20, width, height);
+        this.txtError.get().setFont(fontSansThin.myFont(1, 10f));
+        this.txtError.setForeground(Color.RED);
+        boolean option = (options.equals("Alfa"))? true: false;
+        FunctionInterface tf = (option)?()->{ addFocusAlf(); }:()->{addFocusNum();};
+        tf.get();
+    }
     public Inputs( int x, int y, int width, int height)
     {
  
@@ -49,6 +72,45 @@ public class Inputs extends JTextField implements JoyComponents {
        placeHolder = new TextPrompt(Txt, this);
        placeHolder.setFont(fontSansThin.myFont(3, 14f));
        placeHolder.setForeground(Color.gray);      
+    }
+    
+    public void addFocusAlf()
+    {
+        this.addKeyListener(new KeyAdapter()
+        {
+            public void keyTyped(KeyEvent e)
+            {
+                char character = (char) e.getKeyChar();
+                boolean auxCharacter = ((character < 'a' || character > 'z') && (character < 'A' || character>'Z'))? true: false;
+                FunctionInterface tf =
+                        (auxCharacter)
+                            ?()->
+                            {
+                               e.consume();
+                            }:()->{};
+                tf.get();
+            }
+            
+        });
+    }
+    public void addFocusNum()
+    {
+        this.addKeyListener(new KeyAdapter()
+        {
+            public void keyTyped(KeyEvent e)
+            {
+                char character = (char) e.getKeyChar();
+                boolean auxCharacter = ((character < '0' || character > '9') )? true: false;
+                FunctionInterface tf =
+                        (auxCharacter)
+                            ?()->
+                            {
+                               e.consume();
+                            }:()->{};
+                tf.get();
+            }
+            
+        });
     }
     @Override
     public JComponent get(){

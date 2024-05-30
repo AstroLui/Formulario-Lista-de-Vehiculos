@@ -10,6 +10,9 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -61,7 +64,11 @@ public class Table extends JTable implements JoyComponents, MouseListener
     {
         this.clicks++;
         var car = (Car) this.model.getList().get(this.getSelectedRow());
-        var action = (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && this.clicks <= 2)? new BuildShowRegister(car, this) : null;
+        try {
+            var action = (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && this.clicks <= 2)? new BuildShowRegister(car, this) : null;
+        } catch (IOException ex) {
+            Logger.getLogger(Table.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }   
         
     @Override
