@@ -67,13 +67,13 @@ public class BuildFormulario extends JFrame
         labelLastName = new Label("Apellido",190, 85, 120, 20, 2, 18f);
         c.add(labelLastName.get());
         
-        lastName = new Inputs("Henrique", 190, 110, 130, 20,"");
+        lastName = new Inputs("Henrique", 190, 110, 130, 20,"Alfa");
         c.add(lastName); c.add(lastName.getS());
         
         labelDni = new Label("Cédula", 20, 145, 120, 20, 2, 18f);
         c.add(labelDni.get());
         
-        dni = new Inputs("29750712", 20, 170, 130, 20);
+        dni = new Inputs("29750712", 20, 170, 130, 20, "");
         c.add(dni); c.add(dni.getS());
         
         labelTlf = new Label("Teléfono", 190, 145, 125, 20, 2, 18f);
@@ -153,7 +153,7 @@ public class BuildFormulario extends JFrame
         labelPrecioAl = new Label("Precio del Alquiler", 20, 445, 180, 20, 2, 15f);
         labelPrecioAl.setVisible(false);
         c.add(labelPrecioAl);
-        precioAl = new Inputs( 20, 465, 120, 20);
+        precioAl = new Inputs( 20, 465, 120, 20, "");
         precioAl.setVisible(false);
         precioAl.getS().setVisible(false);
         c.add(precioAl); c.add(precioAl.getS());
@@ -161,7 +161,7 @@ public class BuildFormulario extends JFrame
         labelDayAl = new Label("Dias del Alquiler", 20, 495, 180, 20, 2, 15f);
         labelDayAl.setVisible(false);
         c.add(labelDayAl);
-        dayAl = new Inputs( 20, 515, 120, 20);
+        dayAl = new Inputs( 20, 515, 120, 20, "");
         dayAl.setVisible(false);
         dayAl.getS().setVisible(false);
         c.add(dayAl); c.add(dayAl.getS());
@@ -232,25 +232,25 @@ public class BuildFormulario extends JFrame
         labelName = new Label("Nombre", 20, 85, 120, 20, 2, 18f);
         c.add(labelName.get());
 
-        name = new Inputs("Alfonso", 20, 110, 130, 20);
+        name = new Inputs("Alfonso", 20, 110, 130, 20, "Alfa");
         c.add(name); c.add(name.getS()); name.setText(Coche.getOwn().getName());
         
         labelLastName = new Label("Apellido",190, 85, 120, 20, 2, 18f);
         c.add(labelLastName.get());
         
-        lastName = new Inputs("Henrique", 190, 110, 130, 20);
+        lastName = new Inputs("Henrique", 190, 110, 130, 20, "Alfa");
         c.add(lastName); c.add(lastName.getS()); lastName.setText(Coche.getOwn().getLastName());
         
         labelDni = new Label("Cédula", 20, 145, 120, 20, 2, 18f);
         c.add(labelDni.get());
         
-        dni = new Inputs("29750712", 20, 170, 130, 20);
+        dni = new Inputs("29750712", 20, 170, 130, 20, "");
         c.add(dni); c.add(dni.getS()); dni.setText(Coche.getOwn().getDni());
         
         labelTlf = new Label("Teléfono", 190, 145, 125, 20, 2, 18f);
         c.add(labelTlf.get());
         
-        tlf = new Inputs("0424-4632499", 190, 170, 130, 20);
+        tlf = new Inputs("0424-4632499", 190, 170, 130, 20, "Tlf");
         c.add(tlf); c.add(tlf.getS()); tlf.setText(Coche.getOwn().getTlf());
         
         labelAddress = new Label("Dirección", 20, 205, 125, 20, 2, 18f);
@@ -332,7 +332,7 @@ public class BuildFormulario extends JFrame
         labelPrecioAl = new Label("Precio del Alquiler", 20, 445, 180, 20, 2, 15f);
         labelPrecioAl.setVisible(false);
         c.add(labelPrecioAl);
-        precioAl = new Inputs( 20, 465, 120, 20);
+        precioAl = new Inputs( 20, 465, 120, 20, "");
         precioAl.setVisible(false);
         precioAl.getS().setVisible(false);
         c.add(precioAl); c.add(precioAl.getS());
@@ -340,7 +340,7 @@ public class BuildFormulario extends JFrame
         labelDayAl = new Label("Dias del Alquiler", 20, 495, 180, 20, 2, 15f);
         labelDayAl.setVisible(false);
         c.add(labelDayAl);
-        dayAl = new Inputs( 20, 515, 120, 20);
+        dayAl = new Inputs( 20, 515, 120, 20, "");
         dayAl.setVisible(false);
         dayAl.getS().setVisible(false);
         c.add(dayAl); c.add(dayAl.getS());

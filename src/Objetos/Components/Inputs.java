@@ -49,11 +49,14 @@ public class Inputs extends JTextField implements JoyComponents {
         this.txtError = new Label("Text", x-5, y+20, width, height);
         this.txtError.get().setFont(fontSansThin.myFont(1, 10f));
         this.txtError.setForeground(Color.RED);
-        boolean option = (options.equals("Alfa"))? true: false;
+        boolean option = (options.equals("Alfa"))? true:false;
+        boolean option2 = (options.equals("Tlf"))? true:false;
         FunctionInterface tf = (option)?()->{ addFocusAlf(); }:()->{addFocusNum();};
         tf.get();
+        FunctionInterface tf2 = (option2)?()->{ addFocusTlf(this.getText()); }:()->{};
+        tf2.get();
     }
-    public Inputs( int x, int y, int width, int height)
+    public Inputs( int x, int y, int width, int height, String options)
     {
  
         this.setFont(fontSans.myFont(1, 14f));
@@ -65,6 +68,8 @@ public class Inputs extends JTextField implements JoyComponents {
         this.txtError = new Label("Text", x-5, y+20, width, height);
         this.txtError.get().setFont(fontSansThin.myFont(1, 10f));
         this.txtError.setForeground(Color.RED);
+        boolean option = (options.equals("Alfa"))? true: false;
+        FunctionInterface tf = (option)?()->{ addFocusAlf(); }:()->{addFocusNum();};
     }
         
     public void addPlaceHolder(String Txt)
@@ -103,6 +108,27 @@ public class Inputs extends JTextField implements JoyComponents {
                 boolean auxCharacter = ((character < '0' || character > '9') )? true: false;
                 FunctionInterface tf =
                         (auxCharacter)
+                            ?()->
+                            {
+                               e.consume();
+                            }:()->{};
+                tf.get();
+            }
+            
+        });
+    }
+    public void addFocusTlf(String texto)
+    {
+        this.addKeyListener(new KeyAdapter()
+        {
+            int maxLength = 10;
+            public void keyTyped(KeyEvent e)
+            {
+                char character = (char) e.getKeyChar();
+                boolean lengthCharacter = (texto.length() >= maxLength) ? true:false;
+                boolean auxCharacter = ((character < '0' || character > '9') )? true: false;
+                FunctionInterface tf =
+                        (auxCharacter || lengthCharacter)
                             ?()->
                             {
                                e.consume();
