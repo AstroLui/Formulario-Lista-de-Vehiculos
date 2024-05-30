@@ -39,13 +39,6 @@ public class BuildViewMain extends JFrame
        table = new Table(25, 60, 735, 350, columns, columnsClass);
        c.add(table.get());
        
-       var file = new JFileChooser();
-       file.showDialog(null, APPROVE_SELECTION);
-       var p = new People("Isidoro", "Navarro", "30292216", "0412-8968401", "Los Santos");
-       var c = new Car("Toyota", "Supra", "AB345BC", LocalDate.of(2004, 04, 04), Color.RED, file.getSelectedFile().toURL(), "En Venta");
-       c.asignOwn(p);
-       table.getModel().Add(c);
-       
        btnAgregar = new Button("Agregar Registro", 25, 420, 170,30);
        btnAgregar.get().addActionListener((ActionEvent e) -> {
            BuildFormulario form = new BuildFormulario();

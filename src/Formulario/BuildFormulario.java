@@ -321,6 +321,28 @@ public class BuildFormulario extends JFrame
             c.repaint();
         });
         
+        labelImage = new Label("Imagen", 190, 385, 120, 20, 2, 18f);
+        c.add(labelImage);
+        
+        btnImagen = new Button("Escoge una imagen", 190, 410, 149, 20);
+        c.add(btnImagen);
+     
+        try {
+            imagen = new Label( 190, 440, 140, 80, Coche.getIconImage());
+        } catch (MalformedURLException ex) {} catch (IOException ex) {}
+        c.add(imagen);        
+        
+        btnImagen.addActionListener((ActionEvent e) ->
+        {
+            chooseImag = new ChooseFile();
+            var file = (File) chooseImag.ShowDiag();
+            try {
+                imagen = new Label( 190, 440, 140, 80, file.toURL());
+            } catch (MalformedURLException ex) {} catch (IOException ex) {}
+            c.add(imagen);
+            c.repaint();
+        });
+        
         labelEstado = new Label("Estado", 20, 385, 120, 20, 2, 18f);
         c.add(labelEstado);
         
@@ -382,17 +404,23 @@ public class BuildFormulario extends JFrame
         btnEditar = new Button("Editar",80,580,180,30);
         btnEditar.addActionListener((ActionEvent e) ->
         {
+            boolean isValid = name.getText().isEmpty();
+            boolean bool = (name.getText().equals(""))? false: true;
+            FunctionInterface tf = 
+                    (bool)?()->
+                    {
+                        /* para Testear, aunque asi sera como se crearan los betas con el formulario */
+                        People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
+                        Car c = ("En Alquiler".equals(estado.getSelectedItem()))
+                                ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
+                                : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem());
+                        c.asignOwn(p);
+                        parentTable.getModel().Edit(Coche.getId()-1, c);
+                        parentTable.repaint();
+                        this.parentTable.setClick(0);
+                        this.dispose();
+                    }:()->{};
             
-            /* para Testear, aunque asi sera como se crearan los betas con el formulario */
-            People p = new People(name.getText(), lastName.getText(),dni.getText(), tlf.getText(), address.getText());
-            Car c = ("En Alquiler".equals(estado.getSelectedItem()))
-                    ? new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem(), parseInt(dayAl.getText()), parseDouble(precioAl.getText()))
-                    : new Car((String)brand.getSelectedItem(), (String)model.getSelectedItem(), idCar.getText(), LocalDate.of(parseInt(year.getText()), 01, 01),colorSeleccionado, imagen.getIconImage(),(String)estado.getSelectedItem());
-            c.asignOwn(p);
-            parentTable.getModel().Edit(Coche.getId()-1, c);
-            parentTable.repaint();
-            this.parentTable.setClick(0);
-            this.dispose();
         });
         c.add(btnEditar);
     }
