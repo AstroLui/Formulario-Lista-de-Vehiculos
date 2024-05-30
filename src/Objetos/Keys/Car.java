@@ -17,16 +17,17 @@ public class Car
     private URL imagCar;
     private String estado;
     
-    public Car(int id, String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar)
+    public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar,String estado)
     {
-        this.item = id;
         this.brand = brand;
         this.model = model;
         this.licensePlate = licensePlate;
         this.color = colorCar;
         this.yearCar = yearCar;
+        this.estado = estado;
+        CalPrecio();
+        this.precioTotal = this.precioCar  + this.IVA;
     }
-
     public Car(String brand, String model, String licensePlate, LocalDate yearCar, Color colorCar, URL icon,String estado, int day, double precioDay)
     {
         this.brand = brand;
